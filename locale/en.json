@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Canvas Chat",
+    "description": "Turn a linear conversation into a node canvas: each Q&A is a node, and the edges between nodes are context dependencies."
+  }
+}

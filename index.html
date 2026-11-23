@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DeepSeek Harness · 画布式对话</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 左栏：对话列表 -->
+    <aside class="sidebar" id="sidebar" tabindex="-1">
+      <div class="sidebar-head">
+        <button type="button" class="btn btn-primary" id="btn-new-canvas">
+          新建对话 <span class="kbd">Ctrl N</span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="btn-new-node">
+          新建对话标签 <span class="kbd">Ctrl ⇧ N</span>
+        </button>
+      </div>
+      <div class="sidebar-label">对话</div>
+      <ul class="canvas-list" id="canvas-list"></ul>
+      <div class="sidebar-foot">数据保存在本地浏览器</div>
+    </aside>
+
+    <!-- 中栏：无限画布 -->
+    <main class="canvas-wrap" id="canvas-wrap" tabindex="-1">
+      <div class="world" id="world">
+        <div class="grid" id="grid"></div>
+        <svg class="edges" id="edges" width="1" height="1"></svg>
+        <div class="nodes" id="nodes"></div>
+      </div>
+
+      <div class="canvas-empty" id="canvas-empty" hidden>
+        <strong>这块画布还是空的</strong>
+        <span>点击左侧「新建对话标签」，或按 Ctrl + Shift + N</span>
+      </div>
+
+      <div class="canvas-hud">
+        <button type="button" id="zoom-out" title="缩小（-）">−</button>
+        <span id="zoom-label">100%</span>
+        <button type="button" id="zoom-in" title="放大（+）">+</button>
+        <button type="button" id="zoom-fit" title="适配视图（1）">适配</button>
+      </div>
+
+      <div class="canvas-hint">滚轮缩放 · 中键或空格拖动平移 · 拖端口连线 · 右键删除</div>
+    </main>
+
+    <!-- 右栏：当前标签的对话 -->
+    <section class="panel" id="panel" tabindex="0"></section>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root"></div>
+
+  <script src="src/state.js"></script>
+  <script src="src/mock.js"></script>
+  <script src="src/api.js"></script>
+  <script src="src/canvas.js"></script>
+  <script src="src/sidebar.js"></script>
+  <script src="src/panel.js"></script>
+  <script src="src/main.js"></script>
+</body>
+</html>

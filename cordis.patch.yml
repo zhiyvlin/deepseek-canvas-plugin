@@ -1,0 +1,18 @@
+# 画布式对话只扩展 Host 侧：复用现有的 DSH Web Server 托管静态前端，
+# 并把 /canvas/api/* 接到宿主的 agents 服务上（真实模型，流式返回）。
+# 不注入 Client 插件、不覆盖任何界面、不启动第二个进程。
+#
+# 打开方式：浏览器访问 http://127.0.0.1:<端口>/canvas/
+# 因为是一个普通整页（不是浮层），点进点出都走浏览器自身的导航，没有退出陷阱。
+- insert:
+    - id: canvas
+      name: deepseek-canvas-plugin
+      config:
+        # 静态根默认就是插件自身目录（index.html 与 src/ 所在处）。
+        # 需要单独部署前端时再改成绝对路径。
+        # 画布提问走哪个模型：与 profile 里 agent-default-model 保持一致。
+        provider: deepseek-account
+        model: deepseek-flash
+        # 单轮最长等待（毫秒），超时后中止并回 SSE error。
+        timeoutMs: 300000
+        trustedHosts: []
